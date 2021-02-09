@@ -1,3 +1,5 @@
+const PORT=process.env.PORT||3000;
+
 const express=require('express'),
       app=express(),
       bodyParser=require('body-parser');
@@ -96,6 +98,6 @@ var config = {
 
 
 
-app.listen(3000,()=>{
+app.listen(PORT,()=>{
     console.log("editor started");
 });
