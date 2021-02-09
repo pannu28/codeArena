@@ -1,0 +1,21 @@
+{
+  "name": "editor",
+  "version": "1.0.0",
+  "description": "editor",
+  "main": "app.js",
+  "scripts": {
+    "test": "1",
+    "nodemon": "nodemon app.js"
+  },
+  "author": "pannu",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
