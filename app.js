@@ -16,13 +16,13 @@ const axios = require('axios');
 //   console.log(error);
 // })
   
-// let CODE_EVALUATION_URL = 'https://api.hackerearth.com/v4/partner/code-evaluation/submissions/';
+let CODE_EVALUATION_URL = 'https://api.hackerearth.com/v4/partner/code-evaluation/submissions/';
 
-//         let Code_Eval_URL = 'https://cors-anywhere.herokuapp.com/' + CODE_EVALUATION_URL;
+        let Code_Eval_URL = 'https://codearenaa.herokuapp.com/' + CODE_EVALUATION_URL;
 
-//         let callback ='https://coding-bros-42213.herokuapp.com/callback'
+        let callback ='https://codearenaa.herokuapp.com/callback'
 
-//         let clientSecret = '5ce27249c8c7ee4fe414c322a8aa5f309221677d';  
+        let clientSecret = 'df3c51f26932a70a519fd350ee716d9b871ed44c';  
         
  
 
@@ -46,8 +46,8 @@ let dataString = {
     'time_limit': 5,
     'memory_limit': 246323,
     'input': '',
-    'callback': callback,
-    'id': "2343847837"
+    'callback': callback
+    // 'id': "2343847837"
 }
 let headers = {
     'Access-Control-Allow-Origin':'*',
@@ -59,11 +59,11 @@ var config = {
     headers: headers,
     body: dataString
 };
-// try {
-    // console.log(2);
-    // const result = await axios.post(Code_Eval_URL, dataString, config);
-    // console.log(1);
-    // console.log(result);
+try {
+    console.log(2);
+    const result =await axios.post(Code_Eval_URL, dataString, config);
+    console.log(1);
+    console.log(result);
     // const statusUrl = res.data.status_update_url;
     // // console.log(statusUrl);
     // let finalStatusUrl = 'https://cors-anywhere.herokuapp.com/' + statusUrl;
@@ -89,10 +89,10 @@ var config = {
     //     // res.send(codeOutput);
     // }
     
-// } catch (error) {
-//     // console.log(error);
-//     res.send(error);
-//   }
+} catch (error) {
+    // console.log(error);
+    res.send(error);
+  }
 });
 
 
