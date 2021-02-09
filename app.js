@@ -20,7 +20,7 @@ let CODE_EVALUATION_URL = 'https://api.hackerearth.com/v4/partner/code-evaluatio
 
         let Code_Eval_URL = 'https://codearenaa.herokuapp.com/' + CODE_EVALUATION_URL;
 
-        let callback ='https://codearenaa.herokuapp.com/callback'
+        let callback = 'https://codearenaa.herokuapp.com/callback/'
 
         let clientSecret = 'df3c51f26932a70a519fd350ee716d9b871ed44c';  
         
