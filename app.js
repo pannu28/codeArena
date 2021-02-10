@@ -36,12 +36,12 @@ res.render("home");
 });
 
 app.post("/",async(req,res)=>{
-    var code=req.body.code;
+    // var code=req.body.code;
 //     console.log(code);
 // res.send("posted");
 
 let dataString = {
-    'source': code,
+    'source': "print('hello')",
     'lang': 'PYTHON3',
     'time_limit': 5,
     'memory_limit': 246323,
