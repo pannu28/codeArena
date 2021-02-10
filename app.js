@@ -18,7 +18,7 @@ const axios = require('axios');
   
 let CODE_EVALUATION_URL = 'https://api.hackerearth.com/v4/partner/code-evaluation/submissions/';
 
-        let Code_Eval_URL = 'https://codearenaa.herokuapp.com/' + CODE_EVALUATION_URL;
+        let Code_Eval_URL = 'https://cors-anywhere.herokuapp.com/' + CODE_EVALUATION_URL;
 
         let callback = 'https://codearenaa.herokuapp.com/callback/'
 
