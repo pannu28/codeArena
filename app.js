@@ -53,7 +53,8 @@ let headers = {
     'Access-Control-Allow-Origin':'*',
     'cache-control': 'no-cache',
     'client-secret': clientSecret,
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    requireHeader: ['origin', 'x-requested-with'],
 };
 var config = {
     headers: headers,
