@@ -1,104 +1,169 @@
-const PORT=process.env.PORT||3000;
+const port = process.env.PORT || 4000;
 
-const express=require('express'),
-      app=express(),
-      bodyParser=require('body-parser');
-      
+const express = require('express'),
+    app = express(),
+    bodyParser = require('body-parser');
+
 const axios = require('axios');
 
-// axios.get('https://codeforces.com/')
-// .then(function (response) {
-//   // handle success
-//   console.log(response);
-// })
-// .catch(function (error) {
-//   // handle error
-//   console.log(error);
-// })
-  
-let CODE_EVALUATION_URL = 'https://api.hackerearth.com/v4/partner/code-evaluation/submissions/';
 
-        let Code_Eval_URL = 'https://cors-anywhere.herokuapp.com/' + CODE_EVALUATION_URL;
+let callback = 'http://localhost:4000/callback/'
 
-        let callback = 'https://codearenaa.herokuapp.com/callback/'
+// windows.lang="C";
 
-        let clientSecret = 'df3c51f26932a70a519fd350ee716d9b871ed44c';  
-        
- 
-
-
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname+"/public"));
-app.set("view engine","ejs");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + "/public"));
+app.set("view engine", "ejs");
 
 app.get("/",(req,res)=>{
-res.render("home");
+    let output_data = {
+        time: "",
+        status: "",
+        output: ""
+    }
+    let src=req.body.code,
+    inp=req.body.input,
+    lan=req.body;//.btn.active  ;
+    console.log(lan);
+   res.render("home",{out: output_data});
 });
 
-app.post("/",async(req,res)=>{
-    // var code=req.body.code;
-//     console.log(code);
-// res.send("posted");
+// app.post("/",(req,res)=>{
+//     let output_data = {
+//         time: "",
+//         status: "",
+//         output: ""
+//     }
+//     let src=req.body.code,
+//     inp=req.body.input,
+//     lan=req.body;//.btn.active  ;
+//     // if(lan===undefined||lan===null)
+//     // lan="C";
+//     console.log(lan);
+//    res.render("home",{out: output_data});
+// });
 
-let dataString = {
-    'source': "print('hello')",
-    'lang': 'PYTHON3',
-    'time_limit': 5,
-    'memory_limit': 246323,
-    'input': '',
-    'callback': callback
-    // 'id': "2343847837"
-}
-let headers = {
-    'Access-Control-Allow-Origin':'*',
-    'cache-control': 'no-cache',
-    'client-secret': clientSecret,
-    'Content-Type': 'application/json',
-    requireHeader: ['origin', 'x-requested-with'],
-};
-var config = {
-    headers: headers,
-    body: dataString
-};
-try {
-    console.log(2);
-    const result =await axios.post(Code_Eval_URL, dataString, config);
-    console.log(1);
-    console.log(result);
-    // const statusUrl = res.data.status_update_url;
-    // // console.log(statusUrl);
-    // let finalStatusUrl = 'https://cors-anywhere.herokuapp.com/' + statusUrl;
-    // const res2 = await axios.get(finalStatusUrl, config);
-    // const code_status = res2.data.result.run_status.status;
-    // const code_time = res2.data.result.run_status.time_used;
-    // if (code_status === "AC") {
-    //     const outputURL = res2.data.result.run_status.output;
+// app.post("/lang",(req,res)=>{
+//     const bd=req.body;
+//     console.log(bd);
+//     let output_data = {
+//         time: "1",
+//         status: "AC",
+//         output: "ABC"
+//     }
+//     res.render("home",{out: output_data});
+// });
 
-    //     let res3 = await axios.get(outputURL);
-    //     const finalOutput = res3.data;
-    //     console.log(finalOutput);
-    //     setCodeOutput({ ...codeOutput, output: finalOutput, status: 'AC', time: code_time });
+app.post('/', async (request, response) => {
 
-    //     // console.log(codeOutput);
-    //     // res.send(codeOutput);
-    // }
-    // else {
-    //     let output = res2.data.result.run_status.stderr;
-    //     setCodeOutput({ ...codeOutput, output: output, status: code_status, time: code_time });
+    try {
+
+        let Code_Eval_URL = 'https://api.hackerearth.com/v4/partner/code-evaluation/submissions/';
+        let clientSecret = 'df3c51f26932a70a519fd350ee716d9b871ed44c';
+
+        let src=request.body.code,
+            inp=request.body.input,
+            lang=request.body.lang;
+            // console.log(lang);
+            // if(lang===undefined||lang===null)
+            //   lang="PYTHON3";
+         console.log(lang);
+        let dataString = {
+            'source': src,
+            'lang': lang,
+            'time_limit': 5,
+            'memory_limit': 246323,
+            'input': inp,
+            'callback': callback,
+            'id': "12347837"
+        }
+
+        let headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'origin,X-requested-with,content-type,accept',
+            'cache-control': 'no-cache',
+            'client-secret': clientSecret,
+            'Content-Type': 'application/json'
+        };
+        let config = {
+            headers: headers
+        };
+
+        let res = await axios.post(Code_Eval_URL, dataString, config);
+        console.log(3);
+        console.log(res.data);
+        // response.json(res.data);
+
+        let statusUrl = res.data.status_update_url;
+    let compile_status;
+    let res2;
+    let is_error_present = false;
+    while (1 != 0) {
+
+        res2 = await axios.get(statusUrl, config);
+        compile_status = res2.data.result.compile_status;
+        if (compile_status === 'OK') {
+            console.log("Compile Status:OK");
+            break;
+        }
+        else if (compile_status === null) {
+            console.log("compile status:null");
+        }
+        else {
+            console.log("error");
+            is_error_present = true;
+            break;
+        }
+
+    }
+        if (is_error_present === true) {
+            is_error_present = false;
+        let output_error = {
+            time: 0,
+            status: 'COMPILE ERROR',
+            output: compile_status
+        }
+        console.log(2);
+        console.log(output_error);
+        response.render("home",{out: output_error});
+        // response.json(output_error);
         
-    //     // console.log(codeOutput);
-    //     // res.send(codeOutput);
-    // }
-    
-} catch (error) {
-    // console.log(error);
-    res.send(error);
-  }
+    }
+    else {
+        let code_status = res2.data.result.run_status.status;
+        let code_time = res2.data.result.run_status.time_used;
+        console.log(res2);
+        let output_console;
+        if (code_status === "AC") {
+            let outputURL = res2.data.result.run_status.output;
+            let res3 = await axios.get(outputURL);
+            let finalOutput = await res3.data;
+            output_console = finalOutput;
+            
+        }
+        else {
+            let outputError = res2.data.result.run_status.stderr;
+            output_console = outputError;
+        }
+        let output_data = {
+            time: code_time,
+            status: code_status,
+            output:output_console
+        }
+        console.log(1);
+        console.log(output_data);
+        response.render("home",{out: output_data});
+        // response.json(output_data);
+    }
+}
+    catch (error) {
+        console.log(4);
+        console.log(error.message);
+        response.send("error");
+    }
 });
 
 
-
-
-app.listen(PORT,()=>{
+app.listen(port, () => {
     console.log("editor started");
 });
