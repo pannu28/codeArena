@@ -3,63 +3,26 @@
 
 <h1>YoYaPa editoorrr !!</h1>
 
-<!-- <form action="/lang" method="post"> -->
-
-    <!-- <div id="lang"> -->
-        <!-- <label for="C">C</label> -->
-  <!-- <input type="submit" class="active" name="C" value="C"> -->
-  <!-- <label for="CPP">CPP</label> -->
-  <!-- <input type="submit" class="btn" name="CPP" value="CPP"> -->
-  <!-- <label for="JAVA">JAVA</label> -->
-  <!-- <input type="submit" class="btn" name="JAVA" value="JAVA"> -->
-  <!-- <label for="PYTHON3">PYTHON3</label> -->
-  <!-- <input type="submit" class="btn" name="PYTHON3" value="PYTHON3"> -->
-  <!-- <label for="JAVASCRIPT">JAVASCRIPT</label> -->
-  <!-- <input type="submit" class="btn" name="JAVASCRIPT" value="JAVASCRIPT"> -->
         <button id="c" class="btn active">C</button>
         <button id="cpp" class="btn">CPP14</button>
         <button id="java" class="btn">JAVA8</button>
         <button id="python" class="btn">PYTHON3</button>
         <button id="javascript" class="btn">JAVASCRIPT</button>
-    <!-- </div>      -->
-
-<!-- </form> -->
 
 <form action="/"  method="POST">
-    <!-- windows.lang="Cpp"; -->
- <!-- <div id="lang">
-         <label for="C">C</label> -->
-        <!-- <input type="submit" class="active" name="lan" value="C"> -->
-        <!-- <label for="CPP">CPP</label> -->
-        <!-- <input type="submit" class="btn" name="lan" value="CPP"> -->
-        <!-- <label for="JAVA">JAVA</label> -->
-        <!-- <input type="submit" class="btn" name="lan" value="JAVA"> -->
-        <!-- <label for="PYTHON3">PYTHON3</label> -->
-        <!-- <input type="submit" class="btn" name="lan" value="PYTHON3"> -->
-        <!-- <label for="JAVASCRIPT">JAVASCRIPT</label> -->
-        <!-- <input type="submit" class="btn" name="lan" value="JAVASCRIPT"> -->
-              <!-- <button id="btn">Cpp</button>
-              <button id="btn">Java</button>
-              <button class="active">PYTHON3</button>
-              <button id="btn">C</button>
-              <button id="btn">Javascript</button> -->
-          <!-- </div>      --> 
-
-    <!-- <div> -->
-  <input type="text" id="text" name="lang" value="C">
-<textarea name="code" id="code" cols="120" rows="40" placeholder="write your code here!!" ></textarea>
-<!-- </div> -->
-<!-- <div>  -->
-<textarea name="input" id="input" cols="35" rows="17" placeholder="input goes here!!" ></textarea>
+     
+<input type="text" id="text" name="lang" value="C">
+<textarea name="code" id="code" cols="100" rows="32" placeholder="write your code here!!" ></textarea>
+ 
+<textarea name="input" id="input" cols="30" rows="13" placeholder="input goes here!!" ></textarea>
 <br>
 
 <div id="time"><span id="ts">Time: </span> <%= out.time %> </div>
 <div id="status"><span id="ts">Status: </span> <%= out.status %></div>
 
-<textarea name="output" id="output" cols="35" rows="16" placeholder="output shows here!!" ><%= out.output %></textarea>
-<!-- </div> -->
+<textarea name="output" id="output" cols="30" rows="13" placeholder="output shows here!!" ><%= out.output %></textarea>
 <br>
-<button id="submit">Comile & Run</button>
+<button id="submit">Compile & Run</button>
 
 </form>
 

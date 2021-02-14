@@ -2,14 +2,10 @@ const port = process.env.PORT || 4000;
 
 const express = require('express'),
     app = express(),
-    bodyParser = require('body-parser');
-
-const axios = require('axios');
-
+    bodyParser = require('body-parser'),
+    axios = require('axios');
 
 let callback = 'http://localhost:4000/callback/'
-
-// windows.lang="C";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
@@ -21,38 +17,8 @@ app.get("/",(req,res)=>{
         status: "",
         output: ""
     }
-    let src=req.body.code,
-    inp=req.body.input,
-    lan=req.body;//.btn.active  ;
-    console.log(lan);
    res.render("home",{out: output_data});
 });
-
-// app.post("/",(req,res)=>{
-//     let output_data = {
-//         time: "",
-//         status: "",
-//         output: ""
-//     }
-//     let src=req.body.code,
-//     inp=req.body.input,
-//     lan=req.body;//.btn.active  ;
-//     // if(lan===undefined||lan===null)
-//     // lan="C";
-//     console.log(lan);
-//    res.render("home",{out: output_data});
-// });
-
-// app.post("/lang",(req,res)=>{
-//     const bd=req.body;
-//     console.log(bd);
-//     let output_data = {
-//         time: "1",
-//         status: "AC",
-//         output: "ABC"
-//     }
-//     res.render("home",{out: output_data});
-// });
 
 app.post('/', async (request, response) => {
 
@@ -64,11 +30,8 @@ app.post('/', async (request, response) => {
         let src=request.body.code,
             inp=request.body.input,
             lang=request.body.lang;
-            // console.log(lang);
-            // if(lang===undefined||lang===null)
-            //   lang="PYTHON3";
-         console.log(lang);
-        let dataString = {
+            
+          let dataString = {
             'source': src,
             'lang': lang,
             'time_limit': 5,
@@ -90,8 +53,8 @@ app.post('/', async (request, response) => {
         };
 
         let res = await axios.post(Code_Eval_URL, dataString, config);
-        console.log(3);
-        console.log(res.data);
+        // console.log(3);
+        // console.log(res.data);
         // response.json(res.data);
 
         let statusUrl = res.data.status_update_url;
@@ -132,7 +95,7 @@ app.post('/', async (request, response) => {
     else {
         let code_status = res2.data.result.run_status.status;
         let code_time = res2.data.result.run_status.time_used;
-        console.log(res2);
+        // console.log(res2);
         let output_console;
         if (code_status === "AC") {
             let outputURL = res2.data.result.run_status.output;
@@ -150,15 +113,15 @@ app.post('/', async (request, response) => {
             status: code_status,
             output:output_console
         }
-        console.log(1);
-        console.log(output_data);
+        // console.log(1);
+        // console.log(output_data);
         response.render("home",{out: output_data});
         // response.json(output_data);
     }
 }
     catch (error) {
-        console.log(4);
-        console.log(error.message);
+        // console.log(4);
+        // console.log(error.message);
         response.send("error");
     }
 });
