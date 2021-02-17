@@ -1,29 +1,42 @@
 
 <link rel="stylesheet" href="/stylesheets/main.css">
 
+
+<body onload="load()">
+
 <h1>YoYaPa editoorrr !!</h1>
 
-        <button id="c" class="btn active">C</button>
-        <button id="cpp" class="btn">CPP14</button>
-        <button id="java" class="btn">JAVA8</button>
-        <button id="python" class="btn">PYTHON3</button>
-        <button id="javascript" class="btn">JAVASCRIPT</button>
+        <button id="C" class="btn active">C</button>
+        <button id="CPP" class="btn">CPP</button>
+        <button id="CPP14" class="btn">CPP14</button>
+        <button id="JAVA8" class="btn">JAVA8</button>
+        <button id="PYTHON3" class="btn">PYTHON3</button>
+        <button id="reset1" class="reset">RESET</button>
+        <button id="copy2" class="reset">COPY</button>
 
 <form action="/"  method="POST">
      
 <input type="text" id="text" name="lang" value="C">
-<textarea name="code" id="code" cols="100" rows="32" placeholder="write your code here!!" ></textarea>
- 
-<textarea name="input" id="input" cols="30" rows="13" placeholder="input goes here!!" ></textarea>
+<textarea name="code" id="code" cols="100" rows="32" placeholder="write your code here!!" >#include <stdio.h>\n\nint main() {\n    //code\n     return 0;\n}</textarea>
+        <!-- <input type="button" id="copy" value="COPY">   -->
+<div id="cpy">      
+<textarea name="input" id="input" cols="30" rows="13" placeholder="input goes here!!" ></textarea> 
+<input type="button" id="incopy" class="copy1" value="COPY">  
+</div>
 <br>
 
 <div id="time"><span id="ts">Time: </span> <%= out.time %> </div>
 <div id="status"><span id="ts">Status: </span> <%= out.status %></div>
 
+<div id="cpy">
 <textarea name="output" id="output" cols="30" rows="13" placeholder="output shows here!!" ><%= out.output %></textarea>
+<input type="button" id="outcopy" class="copy1" value="COPY">
+</div> 
 <br>
 <button id="submit">Compile & Run</button>
 
 </form>
+
+</body>
 
 <script src="/js/main.js"></script>
