@@ -24,7 +24,7 @@ function lang(){
 }
 
 let codes={
-       "C": '#include <stdio.h>\n\nint main() {\n     //code\n     return 0;\n}',
+       "C": '#include <stdio.h>\n\nint main() {\n     //code\n      printf("YoYaPa!");\n      return 0;\n}',
      "CPP14": '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout<<"YoYaPa!";\n    return 0;\n}',
      "JAVA8":'/*package whatever //do not write package name here */\n\nimport java.io.*;\n\nclass YoYaPa {\n    public static void main (String[] args) {\n        System.out.println("YoYaPa!");\n   }\n}',
      "PYTHON3": '#code\nprint("YoYaPa")',
@@ -117,6 +117,14 @@ function load(){
           butn[i].classList.remove("active");
      }
      cl.classList.add("active");
+
+     let f=localStorage.getItem("theme");
+     if(f==="light"){
+          lght();
+     }else{
+          drk();
+     }
+     // alert(typeof(f));
 }
 
 let reset=document.getElementById("reset1");
@@ -146,4 +154,32 @@ function  rest() {
       document.getElementById("code").value=put;
       localStorage.setItem(val,put);
 
+}
+
+let light=document.getElementById("light");
+light.addEventListener("click",lght);
+
+function lght() {
+     document.getElementById("code").classList.remove("dark");
+     document.getElementById("input").classList.remove("dark");
+     document.getElementById("output").classList.remove("dark");
+
+     document.getElementById("code").classList.add("light");
+     document.getElementById("input").classList.add("light");
+     document.getElementById("output").classList.add("light");
+     localStorage.setItem("theme","light");
+}
+
+let dark=document.getElementById("dark");
+dark.addEventListener("click",drk);
+
+function drk() {
+     document.getElementById("code").classList.remove("light");
+     document.getElementById("input").classList.remove("light");
+     document.getElementById("output").classList.remove("light");
+
+     document.getElementById("code").classList.add("dark");
+     document.getElementById("input").classList.add("dark");
+     document.getElementById("output").classList.add("dark");
+     localStorage.setItem("theme","dark");
 }
