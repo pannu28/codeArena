@@ -24,7 +24,7 @@ function lang(){
 }
 
 let codes={
-       "C": '#include <stdio.h>\n\nint main() {\n     //code\n      printf("YoYaPa!");\n      return 0;\n}',
+       "C": '#include <stdio.h>\n\nint main() {\n      //code\n      printf("YoYaPa!");\n      return 0;\n}',
      "CPP14": '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout<<"YoYaPa!";\n    return 0;\n}',
      "JAVA8":'/*package whatever //do not write package name here */\n\nimport java.io.*;\n\nclass YoYaPa {\n    public static void main (String[] args) {\n        System.out.println("YoYaPa!");\n   }\n}',
      "PYTHON3": '#code\nprint("YoYaPa")',
@@ -124,7 +124,6 @@ function load(){
      }else{
           drk();
      }
-     // alert(typeof(f));
 }
 
 let reset=document.getElementById("reset1");
